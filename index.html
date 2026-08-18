@@ -56,7 +56,7 @@
   --accent2-line:rgba(77,113,156,.45);
   --bevel:22px;
   --maxw:720px;
-  --page-maxw:1680px;
+  --page-maxw:none;
   color-scheme:dark;
 }
 
@@ -141,7 +141,20 @@ strong{color:var(--text);font-weight:700}
 
 /* embudo diagram, set beside the section 01 text */
 .embudo-grid{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
-.embudo-svg{width:100%;height:auto;display:block;position:sticky;top:96px}
+.embudo-aside{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px}
+.embudo-svg{width:100%;height:auto;display:block}
+.funnel-caption{display:flex;flex-direction:column;gap:14px}
+.funnel-caption .row{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:12px}
+.funnel-caption .row:last-child{border-bottom:none;padding-bottom:0}
+.funnel-caption .tag{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;
+  color:var(--bg);background:var(--accent);padding:2px 6px;flex:none;
+  text-transform:uppercase;
+}
+.funnel-caption .row:nth-child(2) .tag{background:var(--accent2);}
+.funnel-caption .row:nth-child(3) .tag{background:var(--text-faint);color:var(--bg)}
+.funnel-caption p{margin:0;font-size:.85rem;color:var(--text-muted)}
+.funnel-caption b{color:var(--text);font-weight:600;font-size:.88rem}
 
 /* ---------- main / sections ---------- */
 main{max-width:var(--page-maxw);margin:0 auto;padding:0 40px;display:grid;grid-template-columns:200px 1fr;gap:0 56px}
@@ -243,17 +256,23 @@ tr:last-child td{border-bottom:none}
 td.n,th.n{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
 tbody tr:hover{background:var(--surface-hi)}
 
-/* channel cards grid */
-.grid-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);margin:30px 0;border:1px solid var(--border)}
-.gcard{background:var(--surface);padding:22px 22px 24px;min-height:100%}
-.gcard .tag{
+/* channel spec block — used for each Google/Meta format */
+.channel{background:var(--surface);border:1px solid var(--border);padding:26px 28px 30px;margin:26px 0}
+.channel .tag{
   display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;
   letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);
-  border:1px solid var(--accent2-line);padding:2px 7px;margin-bottom:12px;
+  border:1px solid var(--accent2-line);padding:2px 7px;margin-bottom:14px;
 }
-.gcard h3{font-size:1rem;margin-bottom:10px;color:var(--text)}
-.gcard p{font-size:.87rem;color:var(--text-muted);margin:0;max-width:42ch}
-.gcard p strong{color:var(--text)}
+.channel h3{font-size:1.1rem;margin-bottom:10px;color:var(--text)}
+.channel > p{font-size:.92rem;color:var(--text-muted);margin:0 0 4px;max-width:70ch}
+.channel > p strong{color:var(--text)}
+.channel .tablewrap{margin:20px 0 0}
+.channel .tablewrap:last-child{margin-bottom:0}
+.subhead{
+  font-family:'Titillium Web',sans-serif;font-weight:700;font-size:.94rem;
+  color:var(--text);margin:26px 0 4px;
+}
+.subhead:first-of-type{margin-top:22px}
 
 /* auction triad */
 .triad{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
@@ -308,10 +327,9 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
   .rail{display:none}
   article{grid-column:1;padding-top:48px}
   .embudo-grid{grid-template-columns:1fr}
-  .embudo-svg{position:static;max-width:340px}
+  .embudo-aside{position:static;max-width:340px}
   .compare{grid-template-columns:1fr}
   .vs{display:none}
-  .grid-cards{grid-template-columns:1fr}
   .triad{grid-template-columns:1fr}
 }
 @media (max-width:520px){
@@ -366,20 +384,27 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
           </div>
         </div>
 
-        <svg class="hud embudo-svg" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embudo de tres etapas: conocimiento, consideración y conversión">
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ff6400" stop-opacity="0.95"/>
-              <stop offset="1" stop-color="#ff6400" stop-opacity="0.75"/>
-            </linearGradient>
-          </defs>
-          <polygon points="20,20 440,20 380,110 80,110" fill="url(#g1)"/>
-          <polygon points="80,120 380,120 330,205 130,205" fill="#4d719c" fill-opacity="0.85"/>
-          <polygon points="130,215 330,215 300,280 160,280" fill="#3a3a3f"/>
-          <text x="230" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">IMPRESIONES · CPM</text>
-          <text x="230" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">CLICS · CPC</text>
-          <text x="230" y="253" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#f4f3f1" letter-spacing="1">VENTAS · CPA</text>
-        </svg>
+        <div class="embudo-aside">
+          <svg class="hud embudo-svg" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embudo de tres etapas: conocimiento, consideración y conversión">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ff6400" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#ff6400" stop-opacity="0.75"/>
+              </linearGradient>
+            </defs>
+            <polygon points="20,20 440,20 380,110 80,110" fill="url(#g1)"/>
+            <polygon points="80,120 380,120 330,205 130,205" fill="#4d719c" fill-opacity="0.85"/>
+            <polygon points="130,215 330,215 300,280 160,280" fill="#3a3a3f"/>
+            <text x="230" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">IMPRESIONES · CPM</text>
+            <text x="230" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">CLICS · CPC</text>
+            <text x="230" y="253" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#f4f3f1" letter-spacing="1">VENTAS · CPA</text>
+          </svg>
+          <div class="funnel-caption">
+            <div class="row"><span class="tag">Arriba</span><div><b>Conocimiento</b><p>Todavía no nos conoce. Se mide en impresiones y CPM.</p></div></div>
+            <div class="row"><span class="tag">Medio</span><div><b>Consideración</b><p>Ya nos vio, está averiguando y comparando. Se mide en clics y CPC.</p></div></div>
+            <div class="row"><span class="tag">Abajo</span><div><b>Conversión</b><p>Ya decidió comprar, solo falta que concrete. Se mide en conversiones y CPA.</p></div></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -440,6 +465,42 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
       </div>
 
       <p>Sobre los formatos: Meta es una plataforma vertical y de video por naturaleza. Reels y Stories piden formato vertical, pensado para pantalla completa de celular; el Feed acepta imágenes o carruseles con varios productos; Marketplace funciona casi como una vidriera de fotos de producto. En la mayoría de los casos dejamos que el sistema reparta el anuncio automáticamente entre todas las ubicaciones, porque sabe mejor que nosotros dónde esa persona en particular es más receptiva.</p>
+
+      <div class="channel">
+        <h3>Formatos y creativos en Meta</h3>
+
+        <div class="subhead">Imagen o video único</div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th></tr></thead>
+            <tbody>
+              <tr><td>Cuadrado / vertical corto</td><td class="n">1:1 o 4:5 — mínimo 1080×1080 / 1080×1350</td></tr>
+              <tr><td>Vertical (Stories/Reels)</td><td class="n">9:16 — mínimo 1080×1920</td></tr>
+              <tr><td>Horizontal</td><td class="n">1.91:1 — mínimo 1080×608</td></tr>
+              <tr><td>Texto principal</td><td>2 a 5 variantes, menos de 125 caracteres cada una</td></tr>
+              <tr><td>Título</td><td>2 a 5 variantes, menos de 40 caracteres</td></tr>
+              <tr><td>Descripción</td><td>1, menos de 30 caracteres</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subhead">Carrusel</div>
+        <p>2 o más imágenes o videos deslizables. Mismas medidas que arriba, entre 2 y 10 tarjetas.</p>
+
+        <div class="subhead">Colección</div>
+        <p>Catálogo tipo vidriera a pantalla completa.</p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th></tr></thead>
+            <tbody>
+              <tr><td>Portada + 3 imágenes de producto</td><td class="n">1:1, mínimo 1080×1080</td></tr>
+              <tr><td>Texto principal / título</td><td>2 a 5 variantes cada uno</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p>Un par de datos extra que están en el mismo material y que le dan más peso a algo que ya charlamos: Meta recomienda que los videos duren <strong>menos de 15 segundos</strong> (arriba de 3 minutos directamente no son aptos para anuncios), y hoy el formato con mejor alcance orgánico es <strong>Reels</strong>, en vertical 9:16, de menos de 60 segundos. Por eso vas a ver que la mayoría de nuestro contenido en video para Meta apunta a ese formato.</p>
     </section>
 
     <section id="google">
@@ -450,55 +511,139 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
       <p class="lede">Google no es una sola plataforma, son varios tipos de campaña, y no todos capturan intención — algunos también interrumpen:</p>
 
-      <div class="grid-cards">
-        <div class="gcard">
-          <span class="tag">Abajo · Captura</span>
-          <h3>Search</h3>
-          <p>La persona escribe una búsqueda y ahí aparecemos. Es <strong>solo texto</strong>: no hay foto ni logo, competimos con palabras. Es el formato más "abajo del embudo" que existe: mide conversión, CVR y CPA.</p>
+      <div class="channel">
+        <span class="tag">Abajo · Captura</span>
+        <h3>Search</h3>
+        <p>La persona escribe una búsqueda y ahí aparecemos. Es <strong>solo texto</strong>: no hay foto ni logo, competimos con palabras. Es el formato más "abajo del embudo" que existe: mide conversión, CVR y CPA.</p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th><th class="n">Cantidad</th></tr></thead>
+            <tbody>
+              <tr><td>Títulos (headlines)</td><td class="n">30 caracteres máx.</td><td class="n">hasta 15</td></tr>
+              <tr><td>Descripciones</td><td class="n">90 caracteres máx.</td><td class="n">hasta 4</td></tr>
+              <tr><td>Enlaces a otras secciones del sitio (sitelinks)</td><td class="n">25 car. título + 35 car. descripción</td><td class="n">mínimo 6</td></tr>
+              <tr><td>Frases destacando beneficios (callouts, ej. "envío gratis")</td><td class="n">25 caracteres máx.</td><td class="n">mínimo 2</td></tr>
+            </tbody>
+          </table>
         </div>
-        <div class="gcard">
-          <span class="tag">Abajo · Captura (auto)</span>
-          <h3>Shopping</h3>
-          <p>La ficha con foto, título y precio que aparece arriba de los resultados. No se "diseña": se arma sola a partir del catálogo de productos del reseller. Si las fotos o los títulos del catálogo están mal cargados, el anuncio sale mal, aunque nosotros no hayamos tocado nada.</p>
-        </div>
-        <div class="gcard">
-          <span class="tag">Arriba · Interrupción</span>
-          <h3>Display</h3>
-          <p>Banners en millones de sitios y apps. Acá sí interrumpimos: la persona está navegando otra cosa. Es el formato con más alcance — cubre más del 90% de los usuarios de internet — y por eso es el más fuerte para Reconocimiento.</p>
-        </div>
-        <div class="gcard">
-          <span class="tag">Arriba · Interrupción</span>
-          <h3>Video (YouTube)</h3>
-          <p>Anuncios dentro de videos. Hay varios formatos: los que se pueden saltar a los 5 segundos, los que no se pueden saltar (15-30 segundos), los "bumper" de 6 segundos que tampoco se saltean, y los que aparecen en el feed o en los resultados de búsqueda de YouTube. También hay un formato específico para Shorts. Es puramente interrupción, pensada para Reconocimiento.</p>
-        </div>
-        <div class="gcard">
-          <span class="tag">Arriba → Medio · Puente</span>
-          <h3>Demand Gen</h3>
-          <p>Imagen o video en YouTube, Gmail y Discover, pensada para gente que recién está mostrando un interés inicial (no busca activamente todavía). Es el puente entre Reconocimiento y Consideración: interrumpe, pero con un objetivo más cercano a generar la demanda que después Search va a capturar.</p>
-        </div>
-        <div class="gcard">
-          <span class="tag">Todo el embudo · IA</span>
-          <h3>Performance Max</h3>
-          <p>La más particular: una sola campaña que usa <strong>todo</strong> el inventario de Google al mismo tiempo (Search, Display, YouTube, Gmail, Maps), y la inteligencia artificial decide sola dónde mostrar cada pieza según qué funcione mejor. Se usa específicamente cuando el objetivo es Conversión.</p>
+        <p>El sistema combina automáticamente todos los títulos y descripciones que le demos, así que cuantos más textos de calidad tenga, más variantes puede probar.</p>
+      </div>
+
+      <div class="channel">
+        <span class="tag">Abajo · Captura (auto)</span>
+        <h3>Shopping</h3>
+        <p>La ficha con foto, título y precio que aparece arriba de los resultados. Acá no hay "medidas para pasar" porque no se diseña: se arma sola a partir del catálogo de productos del reseller (foto, título, precio, disponibilidad). Si las fotos o los títulos del catálogo están mal cargados, el anuncio sale mal, aunque nosotros no hayamos tocado nada.</p>
+      </div>
+
+      <div class="channel">
+        <span class="tag">Arriba · Interrupción</span>
+        <h3>Display (GDN)</h3>
+        <p>Banners en millones de sitios y apps. Acá sí interrumpimos: la persona está navegando otra cosa. Es el formato con más alcance — cubre más del 90% de los usuarios de internet — y por eso es el más fuerte para Reconocimiento.</p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th><th class="n">Cantidad</th></tr></thead>
+            <tbody>
+              <tr><td>Imagen horizontal</td><td class="n">1200×628</td><td class="n">—</td></tr>
+              <tr><td>Imagen cuadrada</td><td class="n">1200×1200</td><td class="n">—</td></tr>
+              <tr><td>Imagen vertical</td><td class="n">900×1600</td><td class="n">—</td></tr>
+              <tr><td>—</td><td class="n">mínimo 1 imagen por cada formato</td><td class="n">hasta 15 imágenes en total</td></tr>
+              <tr><td>Video (opcional, de apoyo — no puede ir solo)</td><td class="n">—</td><td class="n">hasta 5, subidos a YouTube</td></tr>
+              <tr><td>Títulos</td><td class="n">30 caracteres máx.</td><td class="n">5</td></tr>
+              <tr><td>Título largo</td><td class="n">90 caracteres máx.</td><td class="n">1</td></tr>
+              <tr><td>Descripciones</td><td class="n">90 caracteres máx.</td><td class="n">5</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <p>Como PMax se arma con todo lo que le demos, cuantos más creativos de calidad tengamos disponibles, más combinaciones puede probar el sistema y mejor optimiza. Esto es lo que MKT le prepara a Google para que la campaña salga bien calificada:</p>
+      <div class="channel">
+        <span class="tag">Arriba · Interrupción</span>
+        <h3>Video (YouTube)</h3>
+        <p>Anuncios dentro de videos. Es puramente interrupción, pensada para Reconocimiento. Hay varios formatos de placement, cada uno con su propia duración:</p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Formato</th><th class="n">Duración</th><th>Característica</th></tr></thead>
+            <tbody>
+              <tr><td>Se puede saltear</td><td class="n">sin límite (ideal menos de 3 min)</td><td>se puede saltar a los 5 segundos</td></tr>
+              <tr><td>No se puede saltear</td><td class="n">15-30 segundos</td><td>obliga a verlo completo</td></tr>
+              <tr><td>Bumper</td><td class="n">6 segundos</td><td>no se puede saltar, muy corto</td></tr>
+              <tr><td>In-feed</td><td class="n">sin límite</td><td>aparece en búsquedas de YouTube, videos relacionados o el home</td></tr>
+              <tr><td>Shorts</td><td class="n">hasta 60 segundos</td><td>aparece entre Shorts</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Texto: 1 título largo (90 caracteres), 1 descripción (90 caracteres), 1 CTA (10 caracteres), 1 link de destino.</p>
+      </div>
 
-      <div class="tablewrap">
-        <table>
-          <caption>Inventario creativo recomendado · Performance Max</caption>
-          <thead>
-            <tr><th>Tipo</th><th>Medida</th><th class="n">Cantidad</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Imagen horizontal</td><td class="n">1200×628</td><td class="n">al menos 4</td></tr>
-            <tr><td>Imagen cuadrada</td><td class="n">1200×1200</td><td class="n">al menos 4</td></tr>
-            <tr><td>Imagen vertical</td><td class="n">960×1200</td><td class="n">2 (recomendado)</td></tr>
-            <tr><td>Video</td><td class="n">cualquier proporción</td><td class="n">hasta 5 (si no se manda, el sistema genera uno automáticamente a partir de las imágenes, pero rinde mejor uno hecho a mano)</td></tr>
-            <tr><td>Textos</td><td class="n">—</td><td class="n">hasta 15 títulos cortos, 5 títulos largos, 5 descripciones</td></tr>
-          </tbody>
-        </table>
+      <div class="channel">
+        <span class="tag">Arriba → Medio · Puente</span>
+        <h3>Demand Gen</h3>
+        <p>Imagen o video en YouTube, Gmail y Discover, pensada para gente que recién está mostrando un interés inicial (no busca activamente todavía). Es el puente entre Reconocimiento y Consideración. Tiene tres formatos posibles:</p>
+
+        <div class="subhead">Imagen única</div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th><th class="n">Cantidad</th></tr></thead>
+            <tbody>
+              <tr><td>Horizontal</td><td class="n">1200×628</td><td class="n">—</td></tr>
+              <tr><td>Cuadrada</td><td class="n">1200×1200</td><td class="n">—</td></tr>
+              <tr><td>Vertical</td><td class="n">960×1200 y 1080×1920</td><td class="n">—</td></tr>
+              <tr><td>—</td><td class="n">ideal 3 imágenes por formato (12 en total)</td><td class="n">mínimo 1 por formato</td></tr>
+              <tr><td>Títulos</td><td class="n">40 caracteres máx.</td><td class="n">5</td></tr>
+              <tr><td>Descripciones</td><td class="n">90 caracteres máx.</td><td class="n">5</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subhead">Carrusel</div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th><th class="n">Cantidad</th></tr></thead>
+            <tbody>
+              <tr><td>Imágenes (mismas proporciones que arriba)</td><td class="n">1200×628 / 1200×1200 / 960×1200</td><td class="n">entre 3 y 10, todas con la misma proporción</td></tr>
+              <tr><td>Título</td><td class="n">40 caracteres máx.</td><td class="n">1</td></tr>
+              <tr><td>Descripción</td><td class="n">90 caracteres máx.</td><td class="n">1</td></tr>
+              <tr><td>Título por imagen</td><td class="n">40 caracteres máx.</td><td class="n">1 por cada imagen subida</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subhead">Video</div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th><th class="n">Cantidad</th></tr></thead>
+            <tbody>
+              <tr><td>Horizontal / cuadrado</td><td class="n">1920×1080 / 1080×1080</td><td class="n">ideal menos de 3 min</td></tr>
+              <tr><td>Vertical</td><td class="n">1080×1920</td><td class="n">ideal 10-20 segundos</td></tr>
+              <tr><td>—</td><td class="n">—</td><td class="n">hasta 5 videos, subidos a YouTube</td></tr>
+              <tr><td>Títulos</td><td class="n">40 caracteres máx.</td><td class="n">5</td></tr>
+              <tr><td>Título largo</td><td class="n">90 caracteres máx.</td><td class="n">5</td></tr>
+              <tr><td>Descripciones</td><td class="n">90 caracteres máx.</td><td class="n">5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="channel">
+        <span class="tag">Todo el embudo · IA</span>
+        <h3>Performance Max</h3>
+        <p>Una sola campaña que usa <strong>todo</strong> el inventario de Google al mismo tiempo (Search, Display, YouTube, Gmail, Maps), y la inteligencia artificial decide sola dónde mostrar cada pieza. Se usa cuando el objetivo es Conversión, y por eso conviene darle la mayor variedad de creativos posible:</p>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Elemento</th><th class="n">Medida</th><th class="n">Cantidad</th></tr></thead>
+            <tbody>
+              <tr><td>Imagen horizontal</td><td class="n">1200×628</td><td class="n">mínimo 4</td></tr>
+              <tr><td>Imagen cuadrada</td><td class="n">1200×1200</td><td class="n">mínimo 4</td></tr>
+              <tr><td>Imagen vertical</td><td class="n">960×1200</td><td class="n">2 (recomendado)</td></tr>
+              <tr><td>—</td><td class="n">—</td><td class="n">al menos 10 imágenes en total para calificación "excelente"</td></tr>
+              <tr><td>Video</td><td class="n">cualquier proporción</td><td class="n">hasta 5 (si no se manda, el sistema genera uno automático a partir de las imágenes)</td></tr>
+              <tr><td>Títulos</td><td class="n">30 caracteres máx.</td><td class="n">15</td></tr>
+              <tr><td>Título largo</td><td class="n">90 caracteres máx.</td><td class="n">5</td></tr>
+              <tr><td>Descripción</td><td class="n">60 caracteres máx.</td><td class="n">1</td></tr>
+              <tr><td>Descripción larga</td><td class="n">90 caracteres máx.</td><td class="n">4</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
