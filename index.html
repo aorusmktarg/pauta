@@ -130,39 +130,6 @@ strong{color:var(--text);font-weight:700}
   font-family:'Aldrich',sans-serif;font-size:.95rem;letter-spacing:.08em;
   color:var(--text);
 }
-/* ---------- hero ---------- */
-.hero{
-  position:relative;
-  padding:76px 40px 64px;
-  border-bottom:1px solid var(--border);
-  overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:
-    linear-gradient(115deg,rgba(255,100,0,.10) 0%,rgba(255,100,0,0) 32%),
-    radial-gradient(ellipse 900px 500px at 85% -10%,rgba(77,113,156,.18),transparent 60%);
-  pointer-events:none;
-}
-.hero-inner{max-width:var(--page-maxw);margin:0 auto;position:relative}
-.hero .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px}
-.hero .eyebrow .rule{width:34px;height:1px;background:var(--accent-line)}
-.hero h1{
-  font-size:clamp(2.15rem,4.4vw + .6rem,3.6rem);
-  line-height:1.08;
-  max-width:14ch;
-}
-.hero h1 em{
-  font-style:normal;color:var(--accent);
-}
-.hero .lede{
-  margin:26px 0 0;max-width:80ch;
-  font-size:1.12rem;color:var(--text-muted);line-height:1.65;
-}
-
-.funnel-viz{margin-top:52px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
-.funnel-viz svg{width:100%;height:auto;display:block}
-
 /* hard-edge schematic corner brackets — brand aesthetic cue */
 .hud{position:relative}
 .hud::before,.hud::after{
@@ -171,18 +138,10 @@ strong{color:var(--text);font-weight:700}
 }
 .hud::before{top:-10px;left:-10px;border-right:none;border-bottom:none}
 .hud::after{bottom:-10px;right:-10px;border-left:none;border-top:none}
-.funnel-caption{display:flex;flex-direction:column;gap:16px}
-.funnel-caption .row{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:12px}
-.funnel-caption .row:last-child{border-bottom:none}
-.funnel-caption .tag{
-  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;
-  color:var(--bg);background:var(--accent);padding:2px 6px;flex:none;
-  text-transform:uppercase;
-}
-.funnel-caption .row:nth-child(2) .tag{background:var(--accent2);}
-.funnel-caption .row:nth-child(3) .tag{background:var(--text-faint);color:var(--bg)}
-.funnel-caption p{margin:0;font-size:.88rem;color:var(--text-muted)}
-.funnel-caption b{color:var(--text);font-weight:600;font-size:.9rem}
+
+/* embudo diagram, set beside the section 01 text */
+.embudo-grid{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+.embudo-svg{width:100%;height:auto;display:block;position:sticky;top:96px}
 
 /* ---------- main / sections ---------- */
 main{max-width:var(--page-maxw);margin:0 auto;padding:0 40px;display:grid;grid-template-columns:200px 1fr;gap:0 56px}
@@ -348,12 +307,12 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
   main{grid-template-columns:1fr}
   .rail{display:none}
   article{grid-column:1;padding-top:48px}
-  .funnel-viz{grid-template-columns:1fr}
+  .embudo-grid{grid-template-columns:1fr}
+  .embudo-svg{position:static;max-width:340px}
   .compare{grid-template-columns:1fr}
   .vs{display:none}
   .grid-cards{grid-template-columns:1fr}
   .triad{grid-template-columns:1fr}
-  .hero{padding:56px 20px 48px}
 }
 @media (max-width:520px){
   .chain{gap:6px 8px}
@@ -370,36 +329,6 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
     </div>
   </div>
 </nav>
-
-<header class="hero">
-  <div class="hero-inner">
-    <span class="eyebrow"><span class="rule"></span>CAPACITACIÓN INTERNA · MEDIA PLAYBOOK</span>
-    <h1>Interrumpir o <em>capturar</em>: la lógica detrás de cada peso de pauta</h1>
-    <p class="lede">Antes de nombrar una sola plataforma hay tres ideas que explican por qué pauteamos donde pauteamos: el embudo por el que pasa el cliente, la diferencia entre interrumpir y capturar su atención, y cómo se gana —y se paga— cada subasta.</p>
-
-    <div class="funnel-viz">
-      <svg class="hud" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embudo de tres etapas: conocimiento, consideración y conversión">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#ff6400" stop-opacity="0.95"/>
-            <stop offset="1" stop-color="#ff6400" stop-opacity="0.75"/>
-          </linearGradient>
-        </defs>
-        <polygon points="20,20 440,20 380,110 80,110" fill="url(#g1)"/>
-        <polygon points="80,120 380,120 330,205 130,205" fill="#4d719c" fill-opacity="0.85"/>
-        <polygon points="130,215 330,215 300,280 160,280" fill="#3a3a3f"/>
-        <text x="230" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">IMPRESIONES · CPM</text>
-        <text x="230" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">CLICS · CPC</text>
-        <text x="230" y="253" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#f4f3f1" letter-spacing="1">VENTAS · CPA</text>
-      </svg>
-      <div class="funnel-caption">
-        <div class="row"><span class="tag">Arriba</span><div><b>Conocimiento</b><p>Todavía no nos conoce. Se mide en impresiones y CPM.</p></div></div>
-        <div class="row"><span class="tag">Medio</span><div><b>Consideración</b><p>Ya nos vio, está averiguando y comparando. Se mide en clics y CPC.</p></div></div>
-        <div class="row"><span class="tag">Abajo</span><div><b>Conversión</b><p>Ya decidió comprar, solo falta que concrete. Se mide en conversiones y CPA.</p></div></div>
-      </div>
-    </div>
-  </div>
-</header>
 
 <main>
   <aside class="rail">
@@ -423,15 +352,34 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
         <h2>El embudo: el mapa que vamos a usar todo el tiempo</h2>
       </div>
 
-      <p class="lede">Antes de nombrar una sola plataforma, hay una idea que tiene que quedar clara: en el camino hacia una venta, la gente pasa por tres momentos distintos, y la publicidad actúa distinto en cada uno.</p>
+      <div class="embudo-grid">
+        <div>
+          <p class="lede">Antes de nombrar una sola plataforma, hay una idea que tiene que quedar clara: en el camino hacia una venta, la gente pasa por tres momentos distintos, y la publicidad actúa distinto en cada uno.</p>
 
-      <p>Primero está el momento en que <strong>todavía no nos conoce</strong>. Después, el momento en que <strong>ya nos vio, está averiguando, comparando</strong>. Y por último, el momento en que <strong>ya decidió comprar</strong> y solo falta que concrete. A esos tres momentos los llamamos el embudo: arriba (conocimiento), en el medio (consideración) y abajo (conversión).</p>
+          <p>Primero está el momento en que <strong>todavía no nos conoce</strong>. Después, el momento en que <strong>ya nos vio, está averiguando, comparando</strong>. Y por último, el momento en que <strong>ya decidió comprar</strong> y solo falta que concrete. A esos tres momentos los llamamos el embudo: arriba (conocimiento), en el medio (consideración) y abajo (conversión).</p>
 
-      <p>¿Por qué importa esto para ventas? Porque cada momento se mide distinto. Arriba, lo que importa es cuánta gente vio el anuncio (impresiones, costo por cada mil impresiones). En el medio, cuánta gente hizo clic e investigó (clics, costo por clic). Abajo, cuánta gente efectivamente compró (conversiones, costo por venta).</p>
+          <p>¿Por qué importa esto para ventas? Porque cada momento se mide distinto. Arriba, lo que importa es cuánta gente vio el anuncio (impresiones, costo por cada mil impresiones). En el medio, cuánta gente hizo clic e investigó (clics, costo por clic). Abajo, cuánta gente efectivamente compró (conversiones, costo por venta).</p>
 
-      <div class="callout">
-        <span class="label">La regla</span>
-        <p>Antes de preguntar si una campaña "funcionó", primero hay que preguntar en qué parte del embudo estaba jugando.</p>
+          <div class="callout">
+            <span class="label">La regla</span>
+            <p>Antes de preguntar si una campaña "funcionó", primero hay que preguntar en qué parte del embudo estaba jugando.</p>
+          </div>
+        </div>
+
+        <svg class="hud embudo-svg" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embudo de tres etapas: conocimiento, consideración y conversión">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff6400" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#ff6400" stop-opacity="0.75"/>
+            </linearGradient>
+          </defs>
+          <polygon points="20,20 440,20 380,110 80,110" fill="url(#g1)"/>
+          <polygon points="80,120 380,120 330,205 130,205" fill="#4d719c" fill-opacity="0.85"/>
+          <polygon points="130,215 330,215 300,280 160,280" fill="#3a3a3f"/>
+          <text x="230" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">IMPRESIONES · CPM</text>
+          <text x="230" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">CLICS · CPC</text>
+          <text x="230" y="253" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#f4f3f1" letter-spacing="1">VENTAS · CPA</text>
+        </svg>
       </div>
     </section>
 
