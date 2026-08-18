@@ -56,6 +56,7 @@
   --accent2-line:rgba(77,113,156,.45);
   --bevel:22px;
   --maxw:720px;
+  --page-maxw:1680px;
   color-scheme:dark;
 }
 
@@ -117,7 +118,7 @@ strong{color:var(--text);font-weight:700}
   border-bottom:1px solid var(--border);
 }
 .topnav-inner{
-  max-width:1040px;margin:0 auto;padding:0 24px;
+  max-width:var(--page-maxw);margin:0 auto;padding:0 40px;
   display:flex;align-items:center;gap:20px;height:56px;
 }
 .brand{
@@ -129,23 +130,10 @@ strong{color:var(--text);font-weight:700}
   font-family:'Aldrich',sans-serif;font-size:.95rem;letter-spacing:.08em;
   color:var(--text);
 }
-.navlinks{
-  display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
-  -ms-overflow-style:none;
-}
-.navlinks::-webkit-scrollbar{display:none}
-.navlinks a{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--text-muted);text-decoration:none;white-space:nowrap;
-  padding:8px 10px;border-radius:2px;transition:color .15s;
-}
-.navlinks a:hover{color:var(--accent)}
-
 /* ---------- hero ---------- */
 .hero{
   position:relative;
-  padding:76px 24px 64px;
+  padding:76px 40px 64px;
   border-bottom:1px solid var(--border);
   overflow:hidden;
 }
@@ -156,7 +144,7 @@ strong{color:var(--text);font-weight:700}
     radial-gradient(ellipse 900px 500px at 85% -10%,rgba(77,113,156,.18),transparent 60%);
   pointer-events:none;
 }
-.hero-inner{max-width:1040px;margin:0 auto;position:relative}
+.hero-inner{max-width:var(--page-maxw);margin:0 auto;position:relative}
 .hero .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px}
 .hero .eyebrow .rule{width:34px;height:1px;background:var(--accent-line)}
 .hero h1{
@@ -168,7 +156,7 @@ strong{color:var(--text);font-weight:700}
   font-style:normal;color:var(--accent);
 }
 .hero .lede{
-  margin:26px 0 0;max-width:56ch;
+  margin:26px 0 0;max-width:80ch;
   font-size:1.12rem;color:var(--text-muted);line-height:1.65;
 }
 
@@ -197,7 +185,7 @@ strong{color:var(--text);font-weight:700}
 .funnel-caption b{color:var(--text);font-weight:600;font-size:.9rem}
 
 /* ---------- main / sections ---------- */
-main{max-width:1040px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:180px 1fr;gap:0 44px}
+main{max-width:var(--page-maxw);margin:0 auto;padding:0 40px;display:grid;grid-template-columns:200px 1fr;gap:0 56px}
 .rail{
   grid-column:1;padding-top:88px;position:relative;
 }
@@ -217,10 +205,9 @@ section:last-of-type{border-bottom:none}
 
 .sec-head{margin-bottom:28px}
 .sec-head .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.sec-head .eyebrow .num{color:var(--text-faint)}
 .sec-head h2{font-size:clamp(1.4rem,1.1rem + 1.4vw,1.95rem);line-height:1.15;max-width:20ch}
 
-article p{margin:0 0 20px;color:var(--text);max-width:66ch}
+article p{margin:0 0 20px;color:var(--text);max-width:none}
 article p.lede{color:var(--text-muted);font-size:1.06rem}
 article > section > p:last-child{margin-bottom:0}
 
@@ -354,7 +341,7 @@ tbody tr:hover{background:var(--surface-hi)}
 footer{
   border-top:1px solid var(--border);padding:40px 24px 60px;
 }
-.footer-inner{max-width:1040px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+.footer-inner{max-width:var(--page-maxw);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
 footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-faint);letter-spacing:.03em}
 
 @media (max-width:900px){
@@ -380,16 +367,6 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
       <img src="data:image/png;base64,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" alt="AORUS">
       <span class="div"></span>
       <span>CAPACITACIÓN · PUBLICIDAD DIGITAL</span>
-    </div>
-    <div class="navlinks">
-      <a href="#embudo">01 Embudo</a>
-      <a href="#interrumpir-capturar">02 Interrumpir/Capturar</a>
-      <a href="#meta">03 Meta</a>
-      <a href="#google">04 Google</a>
-      <a href="#subasta">05 Subasta</a>
-      <a href="#aprendizaje">06 Aprendizaje</a>
-      <a href="#tracking">07 Tracking</a>
-      <a href="#inversion">08 Inversión</a>
     </div>
   </div>
 </nav>
@@ -442,7 +419,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="embudo">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">01</span> · Marco general</span>
+        <span class="eyebrow">Marco general</span>
         <h2>El embudo: el mapa que vamos a usar todo el tiempo</h2>
       </div>
 
@@ -460,7 +437,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="interrumpir-capturar">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">02</span> · Marco general</span>
+        <span class="eyebrow">Marco general</span>
         <h2>Interrumpir vs. capturar: el verdadero motivo por el que elegimos un canal u otro</h2>
       </div>
 
@@ -491,7 +468,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="meta">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">03</span> · Canales</span>
+        <span class="eyebrow">Canales</span>
         <h2>Meta: interrumpir bien</h2>
       </div>
 
@@ -519,7 +496,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="google">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">04</span> · Canales</span>
+        <span class="eyebrow">Canales</span>
         <h2>Google: capturar (y también interrumpir cuando conviene)</h2>
       </div>
 
@@ -579,7 +556,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="subasta">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">05</span> · Mecánica</span>
+        <span class="eyebrow">Mecánica</span>
         <h2>Cómo se gana un espacio publicitario (y por qué el costo varía)</h2>
       </div>
 
@@ -607,7 +584,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="aprendizaje">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">06</span> · Mecánica</span>
+        <span class="eyebrow">Mecánica</span>
         <h2>Ganar la subasta no alcanza: el sistema tiene que aprender</h2>
       </div>
 
@@ -632,7 +609,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="tracking">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">07</span> · Mecánica</span>
+        <span class="eyebrow">Mecánica</span>
         <h2>Sin tracking, ni el algoritmo aprende ni nosotros medimos</h2>
       </div>
 
@@ -650,7 +627,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
     <section id="inversion">
       <div class="sec-head">
-        <span class="eyebrow"><span class="num">08</span> · Presupuesto</span>
+        <span class="eyebrow">Presupuesto</span>
         <h2>Entonces, ¿cuánto hay que invertir?</h2>
       </div>
 
@@ -721,7 +698,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
 
 <footer>
   <div class="footer-inner">
-    <p>CAPACITACIÓN DE PUBLICIDAD DIGITAL · EMBUDO, SUBASTA Y PRESUPUESTO</p>
+    <p>CAPACITACIÓN DE PUBLICIDAD DIGITAL · AGOSTO 2026</p>
     <p style="color:var(--accent)">AORUS — TEAM UP. FIGHT ON.</p>
   </div>
 </footer>
