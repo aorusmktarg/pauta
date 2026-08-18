@@ -257,22 +257,56 @@ td.n,th.n{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nu
 tbody tr:hover{background:var(--surface-hi)}
 
 /* channel spec block — used for each Google/Meta format */
-.channel{background:var(--surface);border:1px solid var(--border);padding:26px 28px 30px;margin:26px 0}
+.channel{background:var(--surface);border:1px solid var(--border);margin:26px 0}
+div.channel{padding:26px 28px 30px}
 .channel .tag{
   display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;
   letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);
-  border:1px solid var(--accent2-line);padding:2px 7px;margin-bottom:14px;
+  border:1px solid var(--accent2-line);padding:2px 7px;
 }
-.channel h3{font-size:1.1rem;margin-bottom:10px;color:var(--text)}
-.channel > p{font-size:.92rem;color:var(--text-muted);margin:0 0 4px;max-width:70ch}
+div.channel .tag{margin-bottom:14px}
+.channel h3{font-size:1.1rem;margin:0 0 10px;color:var(--text)}
+.channel > p{font-size:.92rem;color:var(--text-muted);margin:0 0 16px;max-width:70ch}
+.channel > p:last-child{margin-bottom:0}
 .channel > p strong{color:var(--text)}
-.channel .tablewrap{margin:20px 0 0}
+.channel .tablewrap{margin:20px 0}
 .channel .tablewrap:last-child{margin-bottom:0}
 .subhead{
   font-family:'Titillium Web',sans-serif;font-weight:700;font-size:.94rem;
   color:var(--text);margin:26px 0 4px;
 }
 .subhead:first-of-type{margin-top:22px}
+
+/* accordion — Google campaign types, collapsed by default */
+details.channel summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:24px 28px;
+}
+details.channel summary::-webkit-details-marker{display:none}
+details.channel summary .tag{margin:0}
+details.channel summary h3{transition:color .15s}
+details.channel summary:hover h3{color:var(--accent)}
+details.channel[open] summary{border-bottom:1px solid var(--border)}
+details.channel .chev{
+  flex:none;position:relative;width:26px;height:26px;
+  border:1px solid var(--border-strong);
+}
+details.channel .chev::before,details.channel .chev::after{
+  content:'';position:absolute;background:var(--text-muted);
+}
+details.channel .chev::before{left:6px;right:6px;top:50%;height:1px;transform:translateY(-50%)}
+details.channel .chev::after{top:6px;bottom:6px;left:50%;width:1px;transform:translateX(-50%)}
+details.channel[open] .chev{border-color:var(--accent-line)}
+details.channel[open] .chev::before{background:var(--accent)}
+details.channel[open] .chev::after{display:none}
+.channel-body{padding:4px 28px 28px}
+.channel-body > p{font-size:.92rem;color:var(--text-muted);margin:0 0 16px;max-width:70ch}
+.channel-body > p:last-child{margin-bottom:0}
+.channel-body > p strong{color:var(--text)}
+.channel-body .tablewrap{margin:16px 0 20px}
+.channel-body .tablewrap:last-child{margin-bottom:0}
+.channel-body .subhead:first-child{margin-top:0}
 
 /* auction triad */
 .triad{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}
@@ -507,11 +541,35 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
         <h2>Google: capturar (y también interrumpir cuando conviene)</h2>
       </div>
 
-      <p class="lede">Google no es una sola plataforma, son varios tipos de campaña, y no todos capturan intención — algunos también interrumpen:</p>
+      <p class="lede">Al igual que Meta, Google también arranca preguntando el objetivo antes de dejarte armar la campaña. Son 7 opciones, y cada una habilita un subconjunto distinto de tipos de campaña:</p>
 
-      <div class="channel">
-        <span class="tag">Abajo · Captura</span>
-        <h3>Search</h3>
+      <div class="tablewrap">
+        <table>
+          <caption>Objetivos de campaña · Google Ads</caption>
+          <thead>
+            <tr><th>Objetivo</th><th>Embudo</th><th>Qué busca</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Ventas</strong></td><td>Abajo</td><td>Impulsar las ventas online, por teléfono o en la tienda</td></tr>
+            <tr><td><strong>Oportunidades de venta</strong></td><td>Abajo/Medio</td><td>Animar a los clientes a generar oportunidades de venta y otras conversiones</td></tr>
+            <tr><td><strong>Tráfico al sitio web</strong></td><td>Medio</td><td>Conseguir que los usuarios adecuados visiten el sitio</td></tr>
+            <tr><td><strong>Promoción de la aplicación</strong></td><td>Medio/Abajo</td><td>Descargas, uso y usuarios preregistrados de una app</td></tr>
+            <tr><td><strong>Cobertura y consideración (YouTube)</strong></td><td>Arriba</td><td>Notoriedad y consideración de producto o marca — antes se llamaba así</td></tr>
+            <tr><td><strong>Visitas a tiendas locales</strong></td><td>Abajo</td><td>Visitas a locales físicos, restaurantes o concesionarios</td></tr>
+            <tr><td><strong>Sin objetivo</strong></td><td>—</td><td>Elegís el tipo de campaña directamente, sin pasar por un objetivo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="lede">Pero el objetivo es solo el primer filtro. Dentro de cada uno, el tipo de campaña es lo que define cómo se ve el anuncio en la práctica — y no todos capturan intención, algunos también interrumpen:</p>
+
+      <details class="channel">
+        <summary>
+          <span class="tag">Abajo · Captura</span>
+          <h3>Search</h3>
+          <span class="chev"></span>
+        </summary>
+        <div class="channel-body">
         <p>La persona escribe una búsqueda y ahí aparecemos. Es <strong>solo texto</strong>: no hay foto ni logo, competimos con palabras. Es el formato más "abajo del embudo" que existe: mide conversión, CVR y CPA.</p>
         <div class="tablewrap">
           <table>
@@ -525,17 +583,27 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
           </table>
         </div>
         <p>El sistema combina automáticamente todos los títulos y descripciones que le demos, así que cuantos más textos de calidad tenga, más variantes puede probar.</p>
-      </div>
+        </div>
+      </details>
 
-      <div class="channel">
-        <span class="tag">Abajo · Captura (auto)</span>
-        <h3>Shopping</h3>
+      <details class="channel">
+        <summary>
+          <span class="tag">Abajo · Captura (auto)</span>
+          <h3>Shopping</h3>
+          <span class="chev"></span>
+        </summary>
+        <div class="channel-body">
         <p>La ficha con foto, título y precio que aparece arriba de los resultados. Acá no hay "medidas para pasar" porque no se diseña: se arma sola a partir del catálogo de productos del reseller (foto, título, precio, disponibilidad). Si las fotos o los títulos del catálogo están mal cargados, el anuncio sale mal, aunque nosotros no hayamos tocado nada.</p>
-      </div>
+        </div>
+      </details>
 
-      <div class="channel">
-        <span class="tag">Arriba · Interrupción</span>
-        <h3>Display (GDN)</h3>
+      <details class="channel">
+        <summary>
+          <span class="tag">Arriba · Interrupción</span>
+          <h3>Display (GDN)</h3>
+          <span class="chev"></span>
+        </summary>
+        <div class="channel-body">
         <p>Banners en millones de sitios y apps. Acá sí interrumpimos: la persona está navegando otra cosa. Es el formato con más alcance — cubre más del 90% de los usuarios de internet — y por eso es el más fuerte para Reconocimiento.</p>
         <div class="tablewrap">
           <table>
@@ -552,11 +620,16 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
+      </details>
 
-      <div class="channel">
-        <span class="tag">Arriba · Interrupción</span>
-        <h3>Video (YouTube)</h3>
+      <details class="channel">
+        <summary>
+          <span class="tag">Arriba · Interrupción</span>
+          <h3>Video (YouTube)</h3>
+          <span class="chev"></span>
+        </summary>
+        <div class="channel-body">
         <p>Anuncios dentro de videos. Es puramente interrupción, pensada para Reconocimiento. Hay varios formatos de placement, cada uno con su propia duración:</p>
         <div class="tablewrap">
           <table>
@@ -571,11 +644,16 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
           </table>
         </div>
         <p>Texto: 1 título largo (90 caracteres), 1 descripción (90 caracteres), 1 CTA (10 caracteres), 1 link de destino.</p>
-      </div>
+        </div>
+      </details>
 
-      <div class="channel">
-        <span class="tag">Arriba → Medio · Puente</span>
-        <h3>Demand Gen</h3>
+      <details class="channel">
+        <summary>
+          <span class="tag">Arriba → Medio · Puente</span>
+          <h3>Demand Gen</h3>
+          <span class="chev"></span>
+        </summary>
+        <div class="channel-body">
         <p>Imagen o video en YouTube, Gmail y Discover, pensada para gente que recién está mostrando un interés inicial (no busca activamente todavía). Es el puente entre Reconocimiento y Consideración. Tiene tres formatos posibles:</p>
 
         <div class="subhead">Imagen única</div>
@@ -620,11 +698,16 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
+      </details>
 
-      <div class="channel">
-        <span class="tag">Todo el embudo · IA</span>
-        <h3>Performance Max</h3>
+      <details class="channel">
+        <summary>
+          <span class="tag">Todo el embudo · IA</span>
+          <h3>Performance Max</h3>
+          <span class="chev"></span>
+        </summary>
+        <div class="channel-body">
         <p>Una sola campaña que usa <strong>todo</strong> el inventario de Google al mismo tiempo (Search, Display, YouTube, Gmail, Maps), y la inteligencia artificial decide sola dónde mostrar cada pieza. Se usa cuando el objetivo es Conversión, y por eso conviene darle la mayor variedad de creativos posible:</p>
         <div class="tablewrap">
           <table>
@@ -642,7 +725,8 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
+      </details>
     </section>
 
     <section id="subasta">
