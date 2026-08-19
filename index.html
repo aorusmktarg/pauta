@@ -139,22 +139,9 @@ strong{color:var(--text);font-weight:700}
 .hud::before{top:-10px;left:-10px;border-right:none;border-bottom:none}
 .hud::after{bottom:-10px;right:-10px;border-left:none;border-top:none}
 
-/* embudo diagram, set beside the section 01 text */
-.embudo-grid{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
-.embudo-aside{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px}
-.embudo-svg{width:100%;height:auto;display:block}
-.funnel-caption{display:flex;flex-direction:column;gap:14px}
-.funnel-caption .row{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:12px}
-.funnel-caption .row:last-child{border-bottom:none;padding-bottom:0}
-.funnel-caption .tag{
-  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;
-  color:var(--bg);background:var(--accent);padding:2px 6px;flex:none;
-  text-transform:uppercase;
-}
-.funnel-caption .row:nth-child(2) .tag{background:var(--accent2);}
-.funnel-caption .row:nth-child(3) .tag{background:var(--text-faint);color:var(--bg)}
-.funnel-caption p{margin:0;font-size:.85rem;color:var(--text-muted)}
-.funnel-caption b{color:var(--text);font-weight:600;font-size:.88rem}
+/* embudo diagram — stage names on the funnel, annotations on leader lines */
+.embudo-diagram{max-width:760px;margin:44px auto 12px}
+.embudo-diagram svg{width:100%;height:auto;display:block}
 
 /* ---------- main / sections ---------- */
 main{max-width:var(--page-maxw);margin:0 auto;padding:0 40px;display:grid;grid-template-columns:200px 1fr;gap:0 56px}
@@ -360,8 +347,7 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
   main{grid-template-columns:1fr}
   .rail{display:none}
   article{grid-column:1;padding-top:48px}
-  .embudo-grid{grid-template-columns:1fr}
-  .embudo-aside{position:static;max-width:340px}
+  .embudo-diagram{margin:32px auto 8px}
   .compare{grid-template-columns:1fr}
   .vs{display:none}
   .triad{grid-template-columns:1fr}
@@ -404,41 +390,50 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
         <h2>El embudo: el mapa que vamos a usar todo el tiempo</h2>
       </div>
 
-      <div class="embudo-grid">
-        <div>
-          <p class="lede">Antes de nombrar una sola plataforma, hay una idea que tiene que quedar clara: en el camino hacia una venta, la gente pasa por tres momentos distintos, y la publicidad actúa distinto en cada uno.</p>
+      <p class="lede">Antes de pensar en publicidad, hay una idea que tiene que quedar clara: nadie compra de un día para el otro. Camino a una venta, todos pasamos por tres momentos.</p>
 
-          <p>Primero está el momento en que <strong>todavía no nos conoce</strong>. Después, el momento en que <strong>ya nos vio, está averiguando, comparando</strong>. Y por último, el momento en que <strong>ya decidió comprar</strong> y solo falta que concrete. A esos tres momentos los llamamos el embudo: arriba (conocimiento), en el medio (consideración) y abajo (conversión).</p>
+      <div class="embudo-diagram hud">
+        <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embudo de tres etapas: conocimiento, consideración y conversión, con cómo se mide cada una">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff6400" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#ff6400" stop-opacity="0.75"/>
+            </linearGradient>
+          </defs>
 
-          <p>¿Por qué importa esto? Porque, dependiendo en qué estadio del embudo esté el usuario, se arman campañas distintas —con objetivos y contenidos distintos— para llegar a esa persona y empujarla un escalón más abajo. Y ahí es donde esto importa de verdad: una campaña enfocada en Arriba (awareness) se mide por impresiones, no por ventas. Una de Medio se mide por clics. Y recién una de Abajo se mide por ventas.</p>
+          <polygon points="20,20 260,20 226,110 55,110" fill="url(#g1)"/>
+          <polygon points="55,120 226,120 194,205 86,205" fill="#4d719c" fill-opacity="0.9"/>
+          <polygon points="86,215 194,215 180,280 100,280" fill="#3a3a3f"/>
 
-          <div class="callout">
-            <span class="label">La regla</span>
-            <p>Antes de preguntar si una campaña "funcionó", primero hay que preguntar en qué parte del embudo estaba jugando.</p>
-          </div>
-        </div>
+          <text x="140" y="70" text-anchor="middle" font-family="Aldrich, sans-serif" font-size="15" letter-spacing="1" fill="#000000">CONOCIMIENTO</text>
+          <text x="140" y="167" text-anchor="middle" font-family="Aldrich, sans-serif" font-size="14" letter-spacing="1" fill="#000000">CONSIDERACIÓN</text>
+          <text x="140" y="252" text-anchor="middle" font-family="Aldrich, sans-serif" font-size="15" letter-spacing="1" fill="#ffffff">CONVERSIÓN</text>
 
-        <div class="embudo-aside">
-          <svg class="hud embudo-svg" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Embudo de tres etapas: conocimiento, consideración y conversión">
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ff6400" stop-opacity="0.95"/>
-                <stop offset="1" stop-color="#ff6400" stop-opacity="0.75"/>
-              </linearGradient>
-            </defs>
-            <polygon points="20,20 440,20 380,110 80,110" fill="url(#g1)"/>
-            <polygon points="80,120 380,120 330,205 130,205" fill="#4d719c" fill-opacity="0.85"/>
-            <polygon points="130,215 330,215 300,280 160,280" fill="#3a3a3f"/>
-            <text x="230" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">IMPRESIONES · CPM</text>
-            <text x="230" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#0b0b0c" letter-spacing="1">CLICS · CPC</text>
-            <text x="230" y="253" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#f4f3f1" letter-spacing="1">VENTAS · CPA</text>
-          </svg>
-          <div class="funnel-caption">
-            <div class="row"><span class="tag">Arriba</span><div><b>Conocimiento</b><p>Todavía no nos conoce. Se mide en impresiones y CPM.</p></div></div>
-            <div class="row"><span class="tag">Medio</span><div><b>Consideración</b><p>Ya nos vio, está averiguando y comparando. Se mide en clics y CPC.</p></div></div>
-            <div class="row"><span class="tag">Abajo</span><div><b>Conversión</b><p>Ya decidió comprar, solo falta que concrete. Se mide en conversiones y CPA.</p></div></div>
-          </div>
-        </div>
+          <line x1="243" y1="65" x2="276" y2="65" stroke="#707070" stroke-width="1"/>
+          <rect x="274" y="63" width="4" height="4" fill="#707070"/>
+          <line x1="210" y1="163" x2="276" y2="163" stroke="#707070" stroke-width="1"/>
+          <rect x="274" y="161" width="4" height="4" fill="#707070"/>
+          <line x1="187" y1="248" x2="276" y2="248" stroke="#707070" stroke-width="1"/>
+          <rect x="274" y="246" width="4" height="4" fill="#707070"/>
+
+          <text x="288" y="58.5" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a8a8a8">Todavía no nos conoce.</text>
+          <text x="288" y="71.5" font-family="JetBrains Mono, monospace" font-size="10.5"><tspan fill="#a8a8a8">Se mide en impresiones y </tspan><tspan fill="#ff6400">CPM.</tspan></text>
+
+          <text x="288" y="150" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a8a8a8">Ya nos vio, está</text>
+          <text x="288" y="163" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a8a8a8">averiguando y comparando.</text>
+          <text x="288" y="176" font-family="JetBrains Mono, monospace" font-size="10.5"><tspan fill="#a8a8a8">Se mide en clics y </tspan><tspan fill="#ff6400">CPC.</tspan></text>
+
+          <text x="288" y="235" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a8a8a8">Ya decidió comprar, solo falta</text>
+          <text x="288" y="248" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a8a8a8">que concrete. Se mide en</text>
+          <text x="288" y="261" font-family="JetBrains Mono, monospace" font-size="10.5"><tspan fill="#a8a8a8">conversiones y </tspan><tspan fill="#ff6400">CPA.</tspan></text>
+        </svg>
+      </div>
+
+      <p>¿Por qué tener esto en mente es importante? Porque, dependiendo en qué estadio del embudo esté el usuario, se arman campañas distintas —con objetivos, contenidos y KPIs distintos— para llegar a esa persona y empujarla un escalón más abajo.</p>
+
+      <div class="callout">
+        <span class="label">La regla</span>
+        <p>Antes de preguntar si una campaña "funcionó", primero hay que preguntar en qué parte del embudo estaba jugando. Una campaña enfocada en awareness se mide por impresiones, no por ventas. Una de consideración se mide por clics. Y recién una de abajo se mide por ventas.</p>
       </div>
     </section>
 
