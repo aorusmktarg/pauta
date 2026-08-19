@@ -102,6 +102,11 @@ h1,h2,h3{
 strong{color:var(--text);font-weight:700}
 strong.accent{color:var(--accent)}
 
+.list-clean{list-style:none;margin:18px 0;padding:0;display:flex;flex-direction:column;gap:14px;max-width:70ch}
+.list-clean li{padding-left:20px;position:relative;color:var(--text-muted);font-size:.95rem;line-height:1.6}
+.list-clean li::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:2px;background:var(--accent)}
+.list-clean li strong{color:var(--text)}
+
 .metric{
   font-family:'JetBrains Mono',monospace;
   color:var(--accent2);
@@ -487,40 +492,50 @@ footer p{margin:0;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:
         </table>
       </div>
 
-      <p>Sobre los formatos: Meta es una plataforma vertical y de video por naturaleza. Reels y Stories piden formato vertical, pensado para pantalla completa de celular; el Feed acepta imágenes o carruseles con varios productos; Marketplace funciona casi como una vidriera de fotos de producto. Podemos elegir en cuál o cuáles de todas las ubicaciones de Meta aparecer, pero en la mayoría de los casos dejamos que el sistema reparta el anuncio automáticamente entre todas las ubicaciones, porque sabe mejor que nosotros dónde esa persona en particular es más receptiva.</p>
+      <div class="subhead">Los formatos: cómo se arma la pieza</div>
+      <p>Cuando armamos un anuncio en Meta, lo primero que elegimos es el formato — la estructura de la pieza creativa. Hay tres:</p>
+      <ul class="list-clean">
+        <li><strong>Foto o video único</strong>: una sola imagen o un solo video. El formato base, el que anda en todos lados.</li>
+        <li><strong>Carrusel</strong>: varias tarjetas (hasta 10) que la persona desliza con el dedo, cada una con su propia foto, título y link. Sirve para mostrar varios productos, o varios ángulos de uno solo.</li>
+        <li><strong>Colección</strong>: una foto o video de portada con una grilla de productos debajo. Al tocarla, se abre una experiencia a pantalla completa, como una mini-tienda dentro del anuncio.</li>
+      </ul>
 
-      <div class="channel">
-        <h3>Formatos y creativos en Meta</h3>
+      <div class="subhead">Las ubicaciones: dónde aparece</div>
+      <p>Elegido el formato, falta decidir dónde se va a mostrar. Una "ubicación" es cada uno de los distintos espacios dentro de las apps de Meta donde puede aparecer un anuncio. Meta las agrupa en 6 categorías:</p>
 
-        <div class="subhead">Imagen o video único</div>
-        <div class="tablewrap">
-          <table>
-            <thead><tr><th>Elemento</th><th class="n">Medida</th></tr></thead>
-            <tbody>
-              <tr><td>Cuadrado / vertical corto</td><td class="n">1:1 o 4:5 — mínimo 1080×1080 / 1080×1350</td></tr>
-              <tr><td>Vertical (Stories/Reels)</td><td class="n">9:16 — mínimo 1080×1920</td></tr>
-              <tr><td>Horizontal</td><td class="n">1.91:1 — mínimo 1080×608</td></tr>
-              <tr><td>Texto principal</td><td>2 a 5 variantes, menos de 125 caracteres cada una</td></tr>
-              <tr><td>Título</td><td>2 a 5 variantes, menos de 40 caracteres</td></tr>
-              <tr><td>Descripción</td><td>1, menos de 30 caracteres</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Grupo</th><th>Incluye</th><th>Formato que pide</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Feed</strong></td><td>Facebook, Instagram (feed y perfil), Threads, Explorar</td><td>Cuadrado o vertical corto — 1:1 o 4:5</td></tr>
+            <tr><td><strong>Cuadrado fijo</strong></td><td>Marketplace, columna derecha, mensajes de Messenger</td><td>Cuadrado — 1:1</td></tr>
+            <tr><td><strong>Stories, estado y Reels</strong></td><td>Stories de Facebook, Instagram y Messenger; Reels de Facebook e Instagram; Estados de WhatsApp</td><td>Vertical, pantalla completa (9:16)</td></tr>
+            <tr><td><strong>Video in-stream</strong></td><td>El corte publicitario dentro de otro video, en Facebook</td><td>Horizontal — 16:9 (también acepta 1:1)</td></tr>
+            <tr><td><strong>Búsqueda</strong></td><td>Resultados de búsqueda de Facebook e Instagram</td><td>Similar al Feed</td></tr>
+            <tr><td><strong>Apps y sitios externos</strong></td><td>Audience Network — apps fuera de Meta que aceptan sus anuncios</td><td>Horizontal 1.91:1 o cuadrado 1:1; 9:16 en los intersticiales</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="subhead">Carrusel</div>
-        <p>2 o más imágenes o videos deslizables. Mismas medidas que arriba, entre 2 y 10 tarjetas.</p>
+      <div class="subhead">No todos los formatos andan en todas las ubicaciones</div>
+      <p>Acá se cruzan las dos cosas de arriba:</p>
 
-        <div class="subhead">Colección</div>
-        <p>Catálogo tipo vidriera a pantalla completa.</p>
-        <div class="tablewrap">
-          <table>
-            <thead><tr><th>Elemento</th><th class="n">Medida</th></tr></thead>
-            <tbody>
-              <tr><td>Portada + 3 imágenes de producto</td><td class="n">1:1, mínimo 1080×1080</td></tr>
-              <tr><td>Texto principal / título</td><td>2 a 5 variantes cada uno</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Formato</th><th>Dónde anda</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Foto o video único</strong></td><td>En todas las ubicaciones, sin excepción</td></tr>
+            <tr><td><strong>Carrusel</strong></td><td>Feed, Marketplace, Búsqueda, Mensajes y Stories</td></tr>
+            <tr><td><strong>Colección</strong></td><td>Feed, Stories, Reels, Marketplace y Búsqueda</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Si querés usar Carrusel o Colección, tené en cuenta que Reels e in-stream quedan afuera de al menos uno de los dos — para esas ubicaciones puntuales necesitás sí o sí una foto o video único de respaldo.</p>
+
+      <div class="callout blue">
+        <span class="label">En la práctica</span>
+        <p>Podemos elegir en cuáles ubicaciones aparecer, pero Meta recomienda dejar las ubicaciones "Advantage+" (automáticas): el sistema reparte el anuncio solo donde mejor funciona, y agregar más ubicaciones no cuesta más.</p>
       </div>
     </section>
 
